@@ -3,23 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Entrepreneur Hub – Grow your business and monetize smartly">
-<title>Entrepreneur Hub</title>
+<title>Game Hub</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif; }
-body { background:#f4f4f4; color:#333; line-height:1.6; }
+body { background:#0f0f0f; color:#fff; text-align:center; }
 
 header {
-  background:linear-gradient(90deg,#4CAF50,#45a049);
-  color:white;
-  text-align:center;
+  background:linear-gradient(90deg,#00ffcc,#00cc99);
   padding:2rem 1rem;
 }
+header h1 { font-size:2.5rem; }
 nav a {
-  color:white;
+  color:#000;
   margin:0 1rem;
   font-weight:bold;
 }
@@ -28,63 +26,27 @@ section {
   padding:4rem 1rem;
   max-width:1000px;
   margin:auto;
-  text-align:center;
 }
 
-.hero { background:white; }
-
-.btn {
-  display:inline-block;
-  background:#4CAF50;
-  color:white;
-  padding:0.8rem 2rem;
-  border-radius:5px;
-  font-weight:bold;
-}
-
-.services, .testimonials {
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:2rem;
-}
-
-.service-card, .testimonial-card {
-  background:white;
+.game-card {
+  background:#1a1a1a;
   padding:2rem;
-  width:300px;
-  border-radius:10px;
-  box-shadow:0 5px 15px rgba(0,0,0,.1);
-}
-
-.newsletter input {
-  padding:0.8rem;
-  width:250px;
-  border-radius:5px;
-  border:1px solid #ccc;
-}
-.newsletter button {
-  padding:0.8rem 1.5rem;
-  border:none;
-  border-radius:5px;
-  background:#4CAF50;
-  color:white;
-  font-weight:bold;
+  border-radius:15px;
+  box-shadow:0 0 25px #00ffcc;
 }
 
 canvas {
   display:block;
   margin:2rem auto;
-  background:#111;
+  background:#000;
   border-radius:10px;
-  box-shadow:0 0 20px #4CAF50;
+  box-shadow:0 0 20px #00ffcc;
 }
 
 footer {
-  background:#333;
-  color:white;
-  text-align:center;
-  padding:2rem 1rem;
+  margin-top:3rem;
+  padding:2rem;
+  color:#aaa;
 }
 </style>
 </head>
@@ -92,123 +54,93 @@ footer {
 <body>
 
 <header>
-  <h1>Entrepreneur Hub</h1>
+  <h1>🎮 Game Hub</h1>
   <nav>
-    <a href="#services">Services</a>
-    <a href="#newsletter">Newsletter</a>
-    <a href="#game">Game</a>
-    <a href="#testimonials">Testimonials</a>
+    <a href="#games">Games</a>
+    <a href="#play">Play</a>
   </nav>
 </header>
 
-<section class="hero">
-  <h2>Grow Your Business & Monetize Smartly</h2>
-  <p>Learn, grow, and have fun while building real income streams.</p>
-  <a href="#newsletter" class="btn">Join Newsletter</a>
+<section id="games">
+  <h2>Featured Game</h2>
+  <p>Dodge the blocks and survive as long as you can.</p>
 </section>
 
-<section id="services">
-  <h2>Our Services</h2>
-  <div class="services">
-    <div class="service-card">
-      <h3>Product Launch</h3>
-      <p>Plan, build, and launch with confidence.</p>
-    </div>
-    <div class="service-card">
-      <h3>Marketing Strategy</h3>
-      <p>Reach more customers effectively.</p>
-    </div>
-    <div class="service-card">
-      <h3>Monetization Plan</h3>
-      <p>Turn skills into income.</p>
-    </div>
-  </div>
-</section>
-
-<section id="newsletter">
-  <h2>Free Newsletter</h2>
-  <p>Weekly growth tips straight to your inbox.</p>
-  <div class="newsletter">
-    <input type="email" id="email" placeholder="Your email">
-    <button onclick="subscribe()">Subscribe</button>
-  </div>
-</section>
-
-<section id="game">
-  <h2>🎮 Neon Dodge</h2>
-  <p>Use ← → or A / D to move</p>
-  <canvas id="gameCanvas" width="400" height="600"></canvas>
-</section>
-
-<section id="testimonials">
-  <h2>Testimonials</h2>
-  <div class="testimonials">
-    <div class="testimonial-card">Amazing results!</div>
-    <div class="testimonial-card">Very helpful!</div>
-    <div class="testimonial-card">Highly recommended!</div>
+<section id="play">
+  <div class="game-card">
+    <h2>Neon Dodge</h2>
+    <p>Controls: ← → or A / D</p>
+    <canvas id="gameCanvas" width="400" height="600"></canvas>
   </div>
 </section>
 
 <footer>
-  <p>Contact: entrepreneur@example.com</p>
-  <p>&copy; 2025 Entrepreneur Hub</p>
+  <p>&copy; 2025 Game Hub | Built for fun 🎮</p>
 </footer>
 
 <script>
-function subscribe(){
-  const email=document.getElementById("email").value;
-  alert(email ? `Thanks for subscribing, ${email}!` : "Please enter an email.");
-}
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
 
-const canvas=document.getElementById("gameCanvas");
-const ctx=canvas.getContext("2d");
+let player = { x:180, y:520, size:40, speed:6 };
+let enemies = [];
+let score = 0;
+let gameOver = false;
 
-let player={x:180,y:520,size:40,speed:6};
-let enemies=[];
-let score=0;
-let gameOver=false;
-
-document.addEventListener("keydown",e=>{
-  if(e.key==="ArrowLeft"||e.key==="a") player.x-=player.speed;
-  if(e.key==="ArrowRight"||e.key==="d") player.x+=player.speed;
+document.addEventListener("keydown", e => {
+  if (e.key === "ArrowLeft" || e.key === "a") player.x -= player.speed;
+  if (e.key === "ArrowRight" || e.key === "d") player.x += player.speed;
 });
 
-function spawnEnemy(){
+function spawnEnemy() {
   enemies.push({
-    x:Math.random()*(canvas.width-40),
-    y:-40,size:40,speed:3+score*0.02
+    x: Math.random() * (canvas.width - 40),
+    y: -40,
+    size: 40,
+    speed: 3 + score * 0.02
   });
 }
 
-function loop(){
-  if(gameOver){
-    ctx.fillStyle="white";
-    ctx.font="30px Arial";
-    ctx.fillText("GAME OVER",110,300);
+function gameLoop() {
+  if (gameOver) {
+    ctx.fillStyle = "white";
+    ctx.font = "30px Arial";
+    ctx.fillText("GAME OVER", 110, 300);
+    ctx.font = "20px Arial";
+    ctx.fillText("Score: " + score, 150, 340);
     return;
   }
 
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle="#4CAF50";
-  ctx.fillRect(player.x,player.y,player.size,player.size);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  ctx.fillStyle="red";
-  enemies.forEach(e=>{
-    e.y+=e.speed;
-    ctx.fillRect(e.x,e.y,e.size,e.size);
-    if(e.x<player.x+40&&e.x+40>player.x&&e.y<player.y+40&&e.y+40>player.y)
-      gameOver=true;
+  ctx.fillStyle = "#00ffcc";
+  ctx.fillRect(player.x, player.y, player.size, player.size);
+
+  ctx.fillStyle = "red";
+  enemies.forEach(e => {
+    e.y += e.speed;
+    ctx.fillRect(e.x, e.y, e.size, e.size);
+
+    if (
+      e.x < player.x + player.size &&
+      e.x + e.size > player.x &&
+      e.y < player.y + player.size &&
+      e.y + e.size > player.y
+    ) {
+      gameOver = true;
+    }
   });
 
-  enemies=enemies.filter(e=>e.y<canvas.height);
+  enemies = enemies.filter(e => e.y < canvas.height);
   score++;
-  ctx.fillStyle="white";
-  ctx.fillText("Score: "+score,10,20);
+  ctx.fillStyle = "white";
+  ctx.fillText("Score: " + score, 10, 20);
 
-  if(Math.random()<0.03) spawnEnemy();
-  requestAnimationFrame(loop);
+  if (Math.random() < 0.03) spawnEnemy();
+  requestAnimationFrame(gameLoop);
 }
-loop();
+
+gameLoop();
 </script>
 
 </body>
