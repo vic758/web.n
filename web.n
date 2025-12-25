@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif; }
+body { background:#0f0f0f; color:#fff; text-align:center; }
+
+header {
+  background:linear-gradient(90deg,#00ffcc,#00cc99);
+  padding:2rem 1rem;
+}
+header h1 { font-size:2.5rem; }
+nav a {
+  color:#000;
+  margin:0 1rem;
+  font-weight:bold;
+}
+
+section {
+  padding:4rem 1rem;
+  max-width:1000px;
+  margin:auto;
+}
+
+.game-card {
+  background:#1a1a1a;
+  padding:2rem;
+  border-radius:15px;
+  box-shadow:0 0 25px #00ffcc;
+}
+
+canvas {
+  display:block;
+  margin:2rem auto;
+  background:#000;
+  border-radius:10px;
+  box-shadow:0 0 20px #00ffcc;
+}
+
+footer {
+  margin-top:3rem;
+  padding:2rem;
+  color:#aaa;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎮 Game Hub</h1>
+  <nav>
+    <a href="#games">Games</a>
+    <a href="#play">Play</a>
+  </nav>
+</header>
+
+<section id="games">
+  <h2>Featured Game</h2>
+  <p>Dodge the blocks and survive as long as you can.</p>
+</section>
+
+<section id="play">
+  <div class="game-card">
+    <h2>Neon Dodge</h2>
+    <p>Controls: ← → or A / D</p>
+    <canvas id="gameCanvas" width="400" height="600"></canvas>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Game Hub | Built for fun 🎮</p>
+</footer>
+
+<script>
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+let player = { x:180, y:520, size:40, speed:6 };
+let enemies = [];
+let score = 0;
+let gameOver = false;
+
+document.addEventListener("keydown", e => {
+  if (e.key === "ArrowLeft" || e.key === "a") player.x -= player.speed;
+  if (e.key === "ArrowRight" || e.key === "d") player.x += player.speed;
+});
+
+function spawnEnemy() {
+  enemies.push({
+    x: Math.random() * (canvas.width - 40),
+    y: -40,
+    size: 40,
+    speed: 3 + score * 0.02
+  });
+}
+
+function gameLoop() {
+  if (gameOver) {
+    ctx.fillStyle = "white";
+    ctx.font = "30px Arial";
+    ctx.fillText("GAME OVER", 110, 300);
+    ctx.font = "20px Arial";
+    ctx.fillText("Score: " + score, 150, 340);
+    return;
+  }
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "#00ffcc";
+  ctx.fillRect(player.x, player.y, player.size, player.size);
+
+  ctx.fillStyle = "red";
+  enemies.forEach(e => {
+    e.y += e.speed;
+    ctx.fillRect(e.x, e.y, e.size, e.size);
+
+    if (
+      e.x < player.x + player.size &&
+      e.x + e.size > player.x &&
+      e.y < player.y + player.size &&
+      e.y + e.size > player.y
+    ) {
+      gameOver = true;
+    }
+  });
+
+  enemies = enemies.filter(e => e.y < canvas.height);
+  score++;
+  ctx.fillStyle = "white";
+  ctx.fillText("Score: " + score, 10, 20);
+
+  if (Math.random() < 0.03) spawnEnemy();
+  requestAnimationFrame(gameLoop);
+}
+
+gameLoop();
+</script>
+
+</body>
+</html>
