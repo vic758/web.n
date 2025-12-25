@@ -1,152 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Entrepreneur website to showcase services and monetize effectively">
-    <title>Entrepreneur Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Reset & base */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
-        body { line-height: 1.6; background-color: #f4f4f4; color: #333; }
-        a { text-decoration: none; color: inherit; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrepreneur Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-        /* Header */
-        header { background: linear-gradient(90deg, #4CAF50, #45a049); color: white; padding: 2rem 1rem; text-align: center; }
-        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        nav a { margin: 0 1rem; font-weight: bold; color: white; transition: 0.3s; }
-        nav a:hover { text-decoration: underline; }
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+body { background:#f4f4f4; color:#333; line-height:1.6; }
+header { background:linear-gradient(90deg,#4CAF50,#45a049); color:#fff; text-align:center; padding:2rem; }
+nav a { color:white; margin:0 1rem; font-weight:bold; }
+section { padding:4rem 1rem; max-width:1000px; margin:auto; text-align:center; }
+.hero { background:#fff; }
+.services,.testimonials { display:flex; flex-wrap:wrap; justify-content:center; gap:2rem; }
+.service-card,.testimonial-card {
+  background:white; padding:2rem; width:300px;
+  border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+footer { background:#333; color:white; text-align:center; padding:2rem; }
 
-        /* Hero Section */
-        .hero { text-align: center; padding: 4rem 1rem; background-color: #fff; }
-        .hero h2 { font-size: 2rem; margin-bottom: 1rem; }
-        .hero p { margin-bottom: 2rem; font-size: 1.2rem; }
-        .btn { display: inline-block; background-color: #4CAF50; color: white; padding: 0.8rem 2rem; border-radius: 5px; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background-color: #45a049; }
-
-        /* Sections */
-        section { padding: 4rem 1rem; max-width: 1000px; margin: auto; }
-        section h2 { font-size: 2rem; margin-bottom: 1rem; text-align: center; }
-        section p { text-align: center; margin-bottom: 2rem; }
-
-        /* Services */
-        .services { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 2rem; }
-        .service-card { background: white; padding: 2rem; border-radius: 10px; width: 300px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s; }
-        .service-card:hover { transform: translateY(-10px); }
-        .service-card h3 { margin-bottom: 1rem; }
-        .service-card p { margin-bottom: 1rem; }
-
-        /* Newsletter */
-        .newsletter { text-align: center; background-color: #fff; padding: 3rem 1rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .newsletter input[type="email"] { padding: 0.8rem; width: 60%; max-width: 300px; margin-right: 1rem; border-radius: 5px; border: 1px solid #ccc; }
-        .newsletter button { padding: 0.8rem 1.5rem; border-radius: 5px; border: none; background-color: #4CAF50; color: white; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .newsletter button:hover { background-color: #45a049; }
-
-        /* Testimonials */
-        .testimonials { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 2rem; }
-        .testimonial-card { background: white; padding: 2rem; border-radius: 10px; width: 300px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .testimonial-card p { margin-bottom: 1rem; font-style: italic; }
-
-        /* Footer */
-        footer { background-color: #333; color: white; text-align: center; padding: 2rem 1rem; margin-top: 2rem; }
-
-        /* Responsive */
-        @media(max-width: 768px) {
-            .services, .testimonials { flex-direction: column; align-items: center; }
-            .hero h2 { font-size: 1.8rem; }
-        }
-    </style>
+canvas {
+  display:block;
+  margin:2rem auto;
+  background:#111;
+  border-radius:10px;
+  box-shadow:0 0 20px #4CAF50;
+}
+</style>
 </head>
+
 <body>
 
-    <!-- Header -->
-    <header>
-        <h1>Entrepreneur Hub</h1>
-        <nav>
-            <a href="#services">Services</a>
-            <a href="#newsletter">Newsletter</a>
-            <a href="#testimonials">Testimonials</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+<header>
+<h1>Entrepreneur Hub</h1>
+<nav>
+<a href="#services">Services</a>
+<a href="#newsletter">Newsletter</a>
+<a href="#testimonials">Testimonials</a>
+<a href="#game">Game</a>
+</nav>
+</header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h2>Grow Your Business & Monetize Smartly</h2>
-        <p>We help entrepreneurs like you launch products, attract customers, and increase revenue online.</p>
-        <a href="#newsletter" class="btn">Join Our Newsletter</a>
-    </section>
+<section class="hero">
+<h2>Grow Your Business & Monetize Smartly</h2>
+<p>Learn, grow, and have fun while doing it.</p>
+</section>
 
-    <!-- Services Section -->
-    <section id="services">
-        <h2>Our Services</h2>
-        <div class="services">
-            <div class="service-card">
-                <h3>Product Launch</h3>
-                <p>We guide you through creating, marketing, and selling your products successfully.</p>
-                <button onclick="alert('Contact us for Product Launch services!')">Learn More</button>
-            </div>
-            <div class="service-card">
-                <h3>Marketing Strategy</h3>
-                <p>Get a personalized strategy to reach more customers and maximize your revenue.</p>
-                <button onclick="alert('Contact us for Marketing Strategy services!')">Learn More</button>
-            </div>
-            <div class="service-card">
-                <h3>Monetization Plan</h3>
-                <p>Discover ways to turn your skills and content into real income streams.</p>
-                <button onclick="alert('Contact us for Monetization Plan services!')">Learn More</button>
-            </div>
-        </div>
-    </section>
+<section id="services">
+<h2>Our Services</h2>
+<div class="services">
+<div class="service-card">Product Launch</div>
+<div class="service-card">Marketing Strategy</div>
+<div class="service-card">Monetization Plan</div>
+</div>
+</section>
 
-    <!-- Newsletter Section -->
-    <section id="newsletter">
-        <h2>Join Our Free Newsletter</h2>
-        <p>Get tips, resources, and tools delivered straight to your inbox!</p>
-        <div class="newsletter">
-            <input type="email" placeholder="Enter your email" id="email">
-            <button onclick="subscribe()">Subscribe</button>
-        </div>
-    </section>
+<section id="game">
+<h2>🎮 Play Neon Dodge</h2>
+<p>Use ← → or A D to move</p>
+<canvas id="gameCanvas" width="400" height="600"></canvas>
+</section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials">
-        <h2>What Our Clients Say</h2>
-        <div class="testimonials">
-            <div class="testimonial-card">
-                <p>"This team helped me double my revenue in just 3 months!"</p>
-                <strong>- Alex T.</strong>
-            </div>
-            <div class="testimonial-card">
-                <p>"The strategies are practical and easy to implement."</p>
-                <strong>- Maria L.</strong>
-            </div>
-            <div class="testimonial-card">
-                <p>"I finally launched my product with confidence thanks to their guidance."</p>
-                <strong>- John D.</strong>
-            </div>
-        </div>
-    </section>
+<section id="testimonials">
+<h2>Testimonials</h2>
+<div class="testimonials">
+<div class="testimonial-card">Amazing results!</div>
+<div class="testimonial-card">Very helpful!</div>
+</div>
+</section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <p>Contact: entrepreneur@example.com</p>
-        <p>&copy; 2025 Entrepreneur Hub. All rights reserved.</p>
-    </footer>
+<footer>
+<p>&copy; 2025 Entrepreneur Hub</p>
+</footer>
 
-    <!-- JavaScript -->
-    <script>
-        function subscribe() {
-            const email = document.getElementById('email').value;
-            if(email) {
-                alert(`Thank you for subscribing, ${email}!`);
-                document.getElementById('email').value = '';
-            } else {
-                alert('Please enter a valid email.');
-            }
-        }
-    </script>
+<script>
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+let player = { x:180, y:520, size:40, speed:6 };
+let enemies = [];
+let score = 0;
+let gameOver = false;
+
+document.addEventListener("keydown", e => {
+  if(e.key==="ArrowLeft"||e.key==="a") player.x -= player.speed;
+  if(e.key==="ArrowRight"||e.key==="d") player.x += player.speed;
+});
+
+function spawnEnemy(){
+  enemies.push({
+    x:Math.random()*(canvas.width-40),
+    y:-40,
+    size:40,
+    speed:3+score*0.02
+  });
+}
+
+function gameLoop(){
+  if(gameOver){
+    ctx.fillStyle="white";
+    ctx.font="30px Arial";
+    ctx.fillText("GAME OVER",120,300);
+    return;
+  }
+
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  ctx.fillStyle="#4CAF50";
+  ctx.fillRect(player.x,player.y,player.size,player.size);
+
+  ctx.fillStyle="red";
+  enemies.forEach(e=>{
+    e.y+=e.speed;
+    ctx.fillRect(e.x,e.y,e.size,e.size);
+    if(
+      e.x<player.x+player.size &&
+      e.x+e.size>player.x &&
+      e.y<player.y+player.size &&
+      e.y+e.size>player.y
+    ){ gameOver=true; }
+  });
+
+  enemies=enemies.filter(e=>e.y<canvas.height);
+  score++;
+  ctx.fillStyle="white";
+  ctx.fillText("Score: "+score,10,20);
+
+  if(Math.random()<0.03) spawnEnemy();
+  requestAnimationFrame(gameLoop);
+}
+
+gameLoop();
+</script>
 
 </body>
 </html>
